@@ -25,7 +25,7 @@ class Py3status:
             window = find_focused(i3.get_tree())
 
             if window and "name" in window:
-                response["full_text"] = len(window["name"]) > MAX_WIDTH and "..." + window["name"][-MAX_WIDTH:-1] or window["name"]
+                response["full_text"] = len(window["name"]) > MAX_WIDTH and "..." + window["name"][-MAX_WIDTH:] or window["name"]
 
             # There is such encode in py3status, if it fails plugin will shutdown
             response['full_text'].encode('utf-8')
