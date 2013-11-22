@@ -22,10 +22,9 @@ class Py3status:
         response = {'full_text': '', 'name': 'current-title', 'cached_until': time.time() + CACHED_TIME}
 
         try:
-            window = i3.filter(focused=True)
+            window = find_focused(i3.get_tree())
 
-            if window and "name" in window[0]:
-                window = window[0]
+            if window and "name" in window:
                 response["full_text"] = len(window["name"]) > MAX_WIDTH and "..." + window["name"][-MAX_WIDTH:] or window["name"]
 
             # There is such encode in py3status, if it fails plugin will shutdown
